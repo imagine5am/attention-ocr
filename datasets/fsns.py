@@ -22,7 +22,8 @@ import tensorflow as tf
 from tensorflow.contrib import slim
 import logging
 
-DEFAULT_DATASET_DIR = os.path.join(os.path.dirname(__file__), 'data', 'fsns')
+# DEFAULT_DATASET_DIR = os.path.join(os.path.dirname(__file__), 'data', 'fsns')
+DEFAULT_DATASET_DIR = os.path.join('/mnt/data/Rohit/VideoCapsNet/data/FSNS')
 
 # The dataset configuration, should be used only as a default value.
 DEFAULT_CONFIG = {
