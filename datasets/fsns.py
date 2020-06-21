@@ -30,7 +30,7 @@ DEFAULT_CONFIG = {
     'name': 'FSNS',
     'splits': {
         'train': {
-            'size': 384923,
+            'size': 868041, # Only real - 384923
             'pattern': 'train/train*'
         },
         'test': {
