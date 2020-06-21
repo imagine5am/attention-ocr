@@ -195,13 +195,14 @@ def get_data(dataset,
       image_orig, augment, central_crop_size, num_towers=dataset.num_of_views)
   # label = preprocess_label(label)
   label_one_hot = slim.one_hot_encoding(label, dataset.num_char_classes)
-  '''
+  
   images, images_orig, labels, labels_one_hot = (tf.train.shuffle_batch(
       [image, image_orig, label, label_one_hot],
       batch_size=batch_size,
       num_threads=shuffle_config.num_batching_threads,
       capacity=shuffle_config.queue_capacity,
       min_after_dequeue=shuffle_config.min_after_dequeue))
+  
   '''
   images, images_orig, labels, labels_one_hot = (
     tf.train.batch(
@@ -209,6 +210,7 @@ def get_data(dataset,
         batch_size=batch_size,
         num_threads=shuffle_config.num_batching_threads,
         capacity=shuffle_config.queue_capacity)) 
+  '''
 
   return InputEndpoints(
       images=images,

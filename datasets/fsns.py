@@ -147,6 +147,21 @@ def get_split(split_name, dataset_dir=None, config=None):
       tf.VarLenFeature(tf.int64),
       'image/text':
       tf.FixedLenFeature([1], tf.string, default_value=''),
+      
+      'image/charBB':
+        tf.VarLenFeature(tf.int64),  # MAYUR 392 (i.e.14X28) X 11 = 4312
+      'image/wordBB':
+        tf.VarLenFeature(tf.int64),
+      'image/lineBB':
+        tf.VarLenFeature(tf.int64),  # MAYUR 392 (i.e.14X28) X 11 = 4312
+      'image/transformation':
+        tf.FixedLenFeature([1], tf.int64, default_value=zero),
+      'image/video_no':
+        tf.FixedLenFeature([1], tf.int64, default_value=zero),
+      'image/frame_no':
+        tf.FixedLenFeature([1], tf.int64, default_value=zero),
+      'image/flag_synth':
+        tf.FixedLenFeature([1], tf.int64, default_value=zero)
   }
   items_to_handlers = {
       'image':
@@ -156,6 +171,20 @@ def get_split(split_name, dataset_dir=None, config=None):
           format_key='image/format'),
       'label':
       slim.tfexample_decoder.Tensor(tensor_key='image/class'),
+      'charBB':
+      slim.tfexample_decoder.Tensor(tensor_key='image/charBB'),
+      'wordBB':
+      slim.tfexample_decoder.Tensor(tensor_key='image/wordBB'),
+      'lineBB':
+      slim.tfexample_decoder.Tensor(tensor_key='image/lineBB'),
+      'transformation':
+      slim.tfexample_decoder.Tensor(tensor_key='image/transformation'),
+      'video_no':
+      slim.tfexample_decoder.Tensor(tensor_key='image/video_no'),
+      'frame_no':
+      slim.tfexample_decoder.Tensor(tensor_key='image/frame_no'),
+      'flag_synth':
+      slim.tfexample_decoder.Tensor(tensor_key='image/flag_synth'),
       'text':
       slim.tfexample_decoder.Tensor(tensor_key='image/text'),
       'num_of_views':
