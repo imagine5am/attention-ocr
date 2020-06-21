@@ -142,7 +142,7 @@ def get_split(split_name, dataset_dir=None, config=None):
       'image/orig_width':
       tf.FixedLenFeature([1], tf.int64, default_value=zero),
       'image/class':
-      tf.FixedLenFeature([config['max_sequence_length']], tf.int64),
+      tf.VarLenFeature(tf.int64), #tf.FixedLenFeature([config['max_sequence_length']], tf.int64),
       'image/unpadded_class':
       tf.VarLenFeature(tf.int64),
       'image/text':
