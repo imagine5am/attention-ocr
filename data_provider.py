@@ -115,7 +115,7 @@ def central_crop(image, crop_size):
 '''
 
 def preprocess_image(image, augment=False, central_crop_size=None,
-                     num_towers=4):
+                     num_towers=8):
   """Normalizes image to have values in a narrow range around zero.
 
   Args:
@@ -195,13 +195,20 @@ def get_data(dataset,
       image_orig, augment, central_crop_size, num_towers=dataset.num_of_views)
   # label = preprocess_label(label)
   label_one_hot = slim.one_hot_encoding(label, dataset.num_char_classes)
-
+  '''
   images, images_orig, labels, labels_one_hot = (tf.train.shuffle_batch(
       [image, image_orig, label, label_one_hot],
       batch_size=batch_size,
       num_threads=shuffle_config.num_batching_threads,
       capacity=shuffle_config.queue_capacity,
       min_after_dequeue=shuffle_config.min_after_dequeue))
+  '''
+  images, images_orig, labels, labels_one_hot = (
+    tf.train.batch(
+        [image, image_orig, label, label_one_hot],  # put tf_mask10(of set 10/11/9 chars) here and masks outside
+        batch_size=batch_size,
+        num_threads=shuffle_config.num_batching_threads,
+        capacity=shuffle_config.queue_capacity)) 
 
   return InputEndpoints(
       images=images,
