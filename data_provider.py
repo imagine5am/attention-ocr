@@ -43,9 +43,9 @@ ShuffleBatchConfig = collections.namedtuple('ShuffleBatchConfig', [
 ])
 
 DEFAULT_SHUFFLE_CONFIG = ShuffleBatchConfig(
-    num_batching_threads=8, queue_capacity=3000, min_after_dequeue=1000)
+    num_batching_threads=8, queue_capacity=100, min_after_dequeue=10)
 
-
+'''
 def augment_image(image):
   """Augmentation the image with a random modification.
 
@@ -88,7 +88,6 @@ def augment_image(image):
 
   return distorted_image
 
-
 def central_crop(image, crop_size):
   """Returns a central crop for the specified size of an image.
 
@@ -113,7 +112,7 @@ def central_crop(image, crop_size):
       offset_height = tf.cast((image_height - target_height) / 2, tf.int32)
       return tf.image.crop_to_bounding_box(image, offset_height, offset_width,
                                            target_height, target_width)
-
+'''
 
 def preprocess_image(image, augment=False, central_crop_size=None,
                      num_towers=4):
@@ -136,12 +135,14 @@ def preprocess_image(image, augment=False, central_crop_size=None,
         images = [image]
       else:
         images = tf.split(value=image, num_or_size_splits=num_towers, axis=1)
+      '''
       if central_crop_size:
         view_crop_size = (int(central_crop_size[0] / num_towers),
                           central_crop_size[1])
         images = [central_crop(img, view_crop_size) for img in images]
       if augment:
         images = [augment_image(img) for img in images]
+      '''
       image = tf.concat(images, 1)
 
     image = tf.subtract(image, 0.5)
@@ -149,6 +150,14 @@ def preprocess_image(image, augment=False, central_crop_size=None,
 
   return image
 
+
+def preprocess_label(label):
+    with tf.variable_scope('Preprocesslabels'):
+        one_padding = tf.ones(180, dtype='int64')
+        label = tf.concat([label, one_padding], 0)
+        label = tf.slice(label, [0], [180])
+        return label
+      
 
 def get_data(dataset,
              batch_size,
@@ -177,12 +186,14 @@ def get_data(dataset,
   provider = slim.dataset_data_provider.DatasetDataProvider(
       dataset,
       shuffle=shuffle,
-      common_queue_capacity=2 * batch_size,
+      num_readers=50,
+      common_queue_capacity=5000,
       common_queue_min=batch_size)
   image_orig, label = provider.get(['image', 'label'])
 
   image = preprocess_image(
       image_orig, augment, central_crop_size, num_towers=dataset.num_of_views)
+  # label = preprocess_label(label)
   label_one_hot = slim.one_hot_encoding(label, dataset.num_char_classes)
 
   images, images_orig, labels, labels_one_hot = (tf.train.shuffle_batch(

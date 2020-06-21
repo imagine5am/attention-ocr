@@ -22,33 +22,33 @@ import tensorflow as tf
 from tensorflow.contrib import slim
 import logging
 
-# DEFAULT_DATASET_DIR = os.path.join(os.path.dirname(__file__), 'data', 'fsns')
-DEFAULT_DATASET_DIR = os.path.join('/mnt/data/Rohit/VideoCapsNet/data/FSNS')
+# DEFAULT_DATASET_DIR = os.path.join('/mnt/data/Rohit/VideoCapsNet/data/FSNS')
+DEFAULT_DATASET_DIR = os.path.join('/mnt/data/Rohit/ACMData/tftrainallFinal/1trainFinal/')
 
 # The dataset configuration, should be used only as a default value.
 DEFAULT_CONFIG = {
     'name': 'FSNS',
     'splits': {
         'train': {
-            'size': 1044868,
+            'size': 384923,
             'pattern': 'train/train*'
         },
         'test': {
-            'size': 20404,
+            'size': 2077,
             'pattern': 'test/test*'
         },
         'validation': {
-            'size': 16150,
+            'size': 1355,
             'pattern': 'validation/validation*'
         }
     },
     'charset_filename': 'charset_size=134.txt',
-    'image_shape': (150, 600, 3),
-    'num_of_views': 4,
-    'max_sequence_length': 37,
-    'null_code': 133,
+    'image_shape': (256, 480*8, 3),
+    'num_of_views': 8,
+    'max_sequence_length': 180,
+    'null_code': 1,
     'items_to_descriptions': {
-        'image': 'A [150 x 600 x 3] color image.',
+        'image': 'A [260 x 480 x 3] color image.',
         'label': 'Characters codes.',
         'text': 'A unicode string.',
         'length': 'A length of the encoded text.',
