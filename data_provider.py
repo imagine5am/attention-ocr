@@ -151,7 +151,7 @@ def preprocess_image(image, augment=False, central_crop_size=None,
   return image
 
 
-def preprocess_label(label):
+def preprocess_labels(label):
     with tf.variable_scope('Preprocesslabels'):
         one_padding = tf.ones(180, dtype='int64')
         label = tf.concat([label, one_padding], 0)
@@ -186,16 +186,16 @@ def get_data(dataset,
   provider = slim.dataset_data_provider.DatasetDataProvider(
       dataset,
       shuffle=shuffle,
-      num_readers=50,
+      num_readers=100,
       common_queue_capacity=5000,
       common_queue_min=batch_size)
   image_orig, label = provider.get(['image', 'label'])
 
   image = preprocess_image(
       image_orig, augment, central_crop_size, num_towers=dataset.num_of_views)
-  # label = preprocess_label(label)
+  label = preprocess_labels(label)
   label_one_hot = slim.one_hot_encoding(label, dataset.num_char_classes)
-  
+
   images, images_orig, labels, labels_one_hot = (tf.train.shuffle_batch(
       [image, image_orig, label, label_one_hot],
       batch_size=batch_size,

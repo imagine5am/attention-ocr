@@ -2,3 +2,5 @@
 *__pycache__*
 logs/
 logs_*
+old_code/*
+.vscode/*

@@ -46,6 +46,7 @@ DEFAULT_CONFIG = {
     'image_shape': (256, 480*8, 3),
     'num_of_views': 8,
     'max_sequence_length': 180,
+    'max_sequence_length_output': 180,
     'null_code': 1,
     'items_to_descriptions': {
         'image': 'A [260 x 480 x 3] color image.',
@@ -71,6 +72,7 @@ def read_charset(filename, null_character=u'\u2591'):
     a dictionary with keys equal to character codes and values - unicode
     characters.
   """
+  print("Charset File:", filename)
   pattern = re.compile(r'(\d+)\t(.+)')
   charset = {}
   with tf.gfile.GFile(filename) as f:
@@ -80,7 +82,7 @@ def read_charset(filename, null_character=u'\u2591'):
         logging.warning('incorrect charset file. line #%d: %s', i, line)
         continue
       code = int(m.group(1))
-      char = m.group(2)
+      char = m.group(2).decode('utf-8')
       if char == '<nul>':
         char = null_character
       charset[code] = char
@@ -210,4 +212,5 @@ def get_split(split_name, dataset_dir=None, config=None):
       num_char_classes=len(charset),
       num_of_views=config['num_of_views'],
       max_sequence_length=config['max_sequence_length'],
+      max_sequence_length_output=config['max_sequence_length_output'],
       null_code=config['null_code'])
