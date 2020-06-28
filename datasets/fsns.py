@@ -35,11 +35,11 @@ DEFAULT_CONFIG = {
         },
         'test': {
             'size': 2077,
-            'pattern': 'test/test*'
+            'pattern': 'test*'
         },
         'validation': {
             'size': 1355,
-            'pattern': 'validation/validation*'
+            'pattern': 'val*'
         }
     },
     'charset_filename': 'charset_size=134.txt',
