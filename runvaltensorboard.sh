@@ -11,6 +11,8 @@ export CUDNN_PATH=/usr/local/cuda-8.0/lib64/libcudnn.so.5
 
 source ../../env/attention_ocr/bin/activate
 
-tensorboard --logdir=logs/val/ --host=localhost --port=6007
-
-
+tensorboard --logdir=logs/val/cat/ --host=localhost --port=6007
+#tensorboard --logdir=logs/val/icdarcomp15crop/ --host=localhost --port=6007
+#tensorboard --logdir=logs/val/synth/ --host=localhost --port=6007
+#tensorboard --logdir=logs/val/icdarcomp15/ --host=localhost --port=6007
+#tensorboard --logdir=logs/val/icdar19/ --host=localhost --port=6007
