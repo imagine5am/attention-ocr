@@ -62,7 +62,7 @@ def main(_):
   eval_ops = model.create_summaries(
       data, endpoints, dataset.charset, is_training=False)
   slim.get_or_create_global_step()
-  session_config = tf.ConfigProto(device_count={"GPU": 0})
+  session_config = tf.ConfigProto(device_count={"GPU": 1})
   slim.evaluation.evaluation_loop(
       master=FLAGS.master,
       checkpoint_dir=FLAGS.train_log_dir,
