@@ -4,3 +4,4 @@ logs/
 logs_*
 old_code/*
 .vscode/*
+my_models/*

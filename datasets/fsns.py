@@ -23,7 +23,7 @@ from tensorflow.contrib import slim
 import logging
 
 # DEFAULT_DATASET_DIR = os.path.join('/mnt/data/Rohit/VideoCapsNet/data/FSNS')
-DEFAULT_DATASET_DIR = os.path.join('/mnt/data/Rohit/ACMData/tftrainallFinal/1trainFinal/')
+DEFAULT_DATASET_DIR = os.path.join('/mnt/data/Rohit/ACMData/tftrainallFinal/mixed_data/mix1_ready')
 
 # The dataset configuration, should be used only as a default value.
 DEFAULT_CONFIG = {
