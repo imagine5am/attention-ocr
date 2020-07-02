@@ -253,6 +253,11 @@ class SequenceLayerBase(object):
           cell_clip=self._mparams.lstm_state_clip_value,
           state_is_tuple=True,
           initializer=orthogonal_initializer)
+      
+      if self.is_training():
+        lstm_cell = tf.contrib.rnn.DropoutWrapper(lstm_cell, input_keep_prob=1.0, output_keep_prob=0.5, state_keep_prob=1.0)
+        print("Dropuout set to ", 1 , "and output keep to ",  0.5)
+      
       lstm_outputs, _ = self.unroll_cell(
           decoder_inputs=decoder_inputs,
           initial_state=lstm_cell.zero_state(self._batch_size, tf.float32),
