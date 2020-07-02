@@ -31,7 +31,7 @@ DEFAULT_CONFIG = {
     'splits': {
         'train': {
             'size': 892957, # Only real - 384923, all - 868041
-            'pattern': 'train*'
+            'pattern': 'mix_*'
         },
         'test': {
             'size': 2077,
