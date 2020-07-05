@@ -135,6 +135,9 @@ def get_split(split_name, dataset_dir=None, config=None):
     config = DEFAULT_CONFIG
 
   if split_name not in config['splits']:
+    print('Available splits:')
+    print(config['splits'].keys())
+    print('You wanted split', split_name)
     raise ValueError('split name %s was not recognized.' % split_name)
 
   logging.info('Using %s dataset split_name=%s dataset_dir=%s', config['name'],
