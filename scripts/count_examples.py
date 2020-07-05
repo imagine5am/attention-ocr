@@ -2,6 +2,8 @@ import argparse
 import os
 import tensorflow as tf
 
+from tqdm import tqdm
+
 def count_examples(tfrecord_file):
     '''Returns count of number of examples in a tfrecord'''
     count = 0
@@ -29,7 +31,7 @@ if __name__ == "__main__":
     tfrecords_loc = args.tfrecords_loc
     tfrecords = list_files(src_loc=tfrecords_loc, file_extension='.tfrecords')
     count = 0
-    for tfrecord in tfrecords:
+    for tfrecord in tqdm(tfrecords):
         count += count_examples(tfrecord)
         
     print('Number of examples:', count)
