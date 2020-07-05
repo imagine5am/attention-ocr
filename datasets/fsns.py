@@ -33,9 +33,17 @@ DEFAULT_CONFIG = {
             'size': 892957, # Only real - 384923, all - 868041
             'pattern': 'mix_*'
         },
+        '''
+        # Original
         'test': {
             'size': 2077,
             'pattern': 'train*'
+        },
+        '''
+        # CATALYST TEST - /mnt/data/Rohit/ACMData/1a_CATVideosTrain/tftest
+        'test': {
+            'size': 5825,
+            'pattern': 'test*'
         },
         'validation': {
             'size': 1355,
