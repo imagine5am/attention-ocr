@@ -31,3 +31,5 @@ if __name__ == "__main__":
     count = 0
     for tfrecord in tfrecords:
         count += count_examples(tfrecord)
+        
+    print('Number of examples:', count)
