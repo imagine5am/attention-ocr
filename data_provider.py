@@ -131,10 +131,14 @@ def preprocess_image(image, augment=False, central_crop_size=None,
   with tf.variable_scope('PreprocessImage'):
     image = tf.image.convert_image_dtype(image, dtype=tf.float32)
     if augment or central_crop_size:
+      '''
       if num_towers == 1:
         images = [image]
       else:
-        images = tf.split(value=image, num_or_size_splits=num_towers, axis=1)
+      '''
+      images = tf.split(value=image, num_or_size_splits=8, axis=1)
+      rand_num = tf.random.uniform([], minval=0, maxval=7, dtype=tf.dtypes.int32)
+      images = [images[rand_num]]
       '''
       if central_crop_size:
         view_crop_size = (int(central_crop_size[0] / num_towers),
