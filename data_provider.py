@@ -137,8 +137,8 @@ def preprocess_image(image, augment=False, central_crop_size=None,
       else:
       '''
       images = tf.split(value=image, num_or_size_splits=8, axis=1)
-      rand_num = tf.random.uniform([], minval=0, maxval=7, dtype=tf.dtypes.int32)
-      images = [images[rand_num]]
+      sel = tf.random_uniform([], minval=0, maxval=7, dtype=tf.dtypes.int32)
+      images = [images[sel]]
       '''
       if central_crop_size:
         view_crop_size = (int(central_crop_size[0] / num_towers),
