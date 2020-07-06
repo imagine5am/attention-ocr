@@ -137,7 +137,7 @@ def preprocess_image(image, augment=False, central_crop_size=None,
       else:
       '''
       images = tf.split(value=image, num_or_size_splits=8, axis=1)
-      sel = tf.random_uniform([], minval=0, maxval=7, dtype=tf.dtypes.int32)
+      sel = tf.random_uniform([], minval=0, maxval=7, dtype=tf.int32)
       images = [images[sel]]
       '''
       if central_crop_size:
