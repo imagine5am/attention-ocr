@@ -37,8 +37,8 @@ DEFAULT_CONFIG = {
     'name': 'FSNS',
     'splits': {
         'train': {
-            'size': 892957, # Only real - 384923, all - 868041
-            'pattern': 'mix_*'
+            'size': 63129 + 32115 + 34175,
+            'pattern': 'train_*'
         },
         # CATALYST TEST - /mnt/data/Rohit/ACMData/1a_CATVideosTrain/tftest
         'test': {
@@ -160,7 +160,6 @@ def get_split(split_name, dataset_dir=None, config=None):
       tf.VarLenFeature(tf.int64),
       'image/text':
       tf.FixedLenFeature([1], tf.string, default_value=''),
-      
       'image/charBB':
         tf.VarLenFeature(tf.int64),  # MAYUR 392 (i.e.14X28) X 11 = 4312
       'image/wordBB':
