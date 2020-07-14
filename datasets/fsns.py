@@ -43,7 +43,7 @@ DEFAULT_CONFIG = {
         # CATALYST TEST - /mnt/data/Rohit/ACMData/1a_CATVideosTrain/tftest
         'test': {
             'size': 5825,
-            'pattern': 'test*'
+            'pattern': 'train*'
         },
         'validation': {
             'size': 1355,

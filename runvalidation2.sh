@@ -17,4 +17,7 @@ while true; do
 
   CUDA_VISIBLE_DEVICES=3 python -u eval.py --dataset_dir=/mnt/data/Rohit/ACMData/3_aICDAR19VideosTrainnewcpy/tfval/ --train_log_dir=logs/train/ --number_of_steps=1 --num_batches=1355 --split=test --eval_log_dir=logs/val/icdar19/ |& tee -a log_3aicdar19
   sleep 20
+
+  CUDA_VISIBLE_DEVICES=3 python -u eval.py --dataset_dir=/mnt/data/Rohit/ACMData/1a_CATVideosTrain/tftest/ --train_log_dir=logs/train/ --number_of_steps=1 --num_batches=5825 --split=test --eval_log_dir=logs/test/cat/ |& tee -a log_1acat_test
+  sleep 20
 done
