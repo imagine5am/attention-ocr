@@ -21,7 +21,7 @@ def slideshow(images):
     '''
     num_img = len(images)
     current = 0
-    timeout = 5000
+    timeout = 2000
     window_size = (1280, 720)
     
     print('Number of Examples:', num_img)

@@ -47,7 +47,7 @@ DEFAULT_CONFIG = {
         },
         'validation': {
             'size': 1355,
-            'pattern': 'train*'
+            'pattern': 'val_*'
         }
     },
     'charset_filename': 'charset_size=134.txt',

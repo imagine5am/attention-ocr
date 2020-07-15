@@ -8,6 +8,7 @@
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64/:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda-8.0/bin/:$PATH
 export CUDNN_PATH=/usr/local/cuda-8.0/lib64/libcudnn.so.5
+#source /mnt/data/Rohit/SynthVideosCapsnet/synthvid-caps27/bin/activate
 
 source /mnt/data/Rohit/VideoCapsNet/env/attention_ocr/bin/activate
 
