@@ -37,8 +37,8 @@ DEFAULT_CONFIG = {
     'name': 'FSNS',
     'splits': {
         'train': {
-            'size': 63129 + 32115 + 34175,
-            'pattern': 'train_*'
+            'size': 63129 + 7138 + 4436 + 64720 + 66170,
+            'pattern': '*'
         },
         # CATALYST TEST - /mnt/data/Rohit/ACMData/1a_CATVideosTrain/tftest
         'test': {
