@@ -9,6 +9,7 @@ def count_examples(tfrecord_file):
     count = 0
     for _ in tf.python_io.tf_record_iterator(tfrecord_file):
         count += 1
+        
     return count
 
 
@@ -31,7 +32,11 @@ if __name__ == "__main__":
     tfrecords_loc = args.tfrecords_loc
     tfrecords = list_files(src_loc=tfrecords_loc, file_extension='.tfrecords')
     count = 0
+    
     for tfrecord in tqdm(tfrecords):
-        count += count_examples(tfrecord)
+        temp = count_examples(tfrecord)
+        if temp == 0:
+            print("FILE:", tfrecord, " has no examples. Please check.")
+        count += temp 
         
     print('Number of examples:', count)
