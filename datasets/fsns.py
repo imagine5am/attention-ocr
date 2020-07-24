@@ -52,7 +52,7 @@ DEFAULT_CONFIG = {
     },
     'charset_filename': 'charset_size=134.txt',
     'image_shape': (256, 480*8, 3),
-    'num_of_views': 8,
+    'num_of_views': 1,
     'max_sequence_length': 180,
     'max_sequence_length_output': 180,
     'null_code': 1,

@@ -132,6 +132,7 @@ def preprocess_image(image, augment=False, central_crop_size=None,
     image = tf.image.convert_image_dtype(image, dtype=tf.float32)
     if augment or central_crop_size:
       if num_towers == 1:
+        image = tf.split(value=image, num_or_size_splits=8, axis=1)[0]
         images = [image]
       else:
         images = tf.split(value=image, num_or_size_splits=num_towers, axis=1)
