@@ -39,4 +39,4 @@ if __name__ == "__main__":
             print("FILE:", tfrecord, " has no examples. Please check.")
         count += temp 
         
-    print('Number of examples:', count)
+    print('Number of examples at ' + tfrecords_loc + ' : ' + str(count))
