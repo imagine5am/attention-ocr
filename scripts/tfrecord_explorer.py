@@ -3,13 +3,18 @@ import cv2
 import numpy as np
 import os
 import tensorflow as tf
+import traceback
 
 
 def read_examples(tfrecord_file):
     '''Returns a list of examples read from a single tfrecord'''
     examples = []
-    for example in tf.python_io.tf_record_iterator(tfrecord_file):
-        examples.append(tf.train.Example.FromString(example))
+    try:
+        for example in tf.python_io.tf_record_iterator(tfrecord_file):
+            examples.append(tf.train.Example.FromString(example))
+    except Exception:
+        print('Error in file: ' + tfrecord_file)
+        traceback.print_exc()
     return examples
 
 

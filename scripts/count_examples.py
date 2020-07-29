@@ -1,14 +1,19 @@
 import argparse
 import os
 import tensorflow as tf
+import traceback
 
 from tqdm import tqdm
 
 def count_examples(tfrecord_file):
     '''Returns count of number of examples in a tfrecord'''
     count = 0
-    for _ in tf.python_io.tf_record_iterator(tfrecord_file):
-        count += 1
+    try:
+        for _ in tf.python_io.tf_record_iterator(tfrecord_file):
+            count += 1
+    except Exception:
+        print('Error in file: ' + tfrecord_file)
+        traceback.print_exc()
         
     return count
 

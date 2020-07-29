@@ -139,6 +139,15 @@ def train(loss, init_fn, hparams):
       summarize_gradients=True,
       clip_gradient_norm=FLAGS.clip_gradient_norm)
 
+  gpu_config = tf.ConfigProto()
+  #gpu_config.gpu_options.visible_device_list= '1,2,0,3'
+  #gpu_config.gpu_options.visible_device_list= '2'
+  gpu_config.gpu_options.allow_growth = True
+  #gpu_config.gpu_options.per_process_gpu_memory_fraction = 1.0
+  #gpu_config.gpu_options.allocator_type = 'BFC'
+  #gpu_config.log_device_placement = True
+  #gpu_config.allow_soft_placement = True
+  
   slim.learning.train(
       train_op=train_op,
       logdir=FLAGS.train_log_dir,
@@ -150,7 +159,8 @@ def train(loss, init_fn, hparams):
       save_interval_secs=FLAGS.save_interval_secs,
       startup_delay_steps=startup_delay_steps,
       sync_optimizer=sync_optimizer,
-      init_fn=init_fn)
+      init_fn=init_fn,
+      session_config=gpu_config)
 
 
 def prepare_training_dir():
