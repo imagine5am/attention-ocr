@@ -137,6 +137,7 @@ def train(loss, init_fn, hparams):
       loss,
       optimizer,
       summarize_gradients=True,
+      aggregation_method=2, 
       clip_gradient_norm=FLAGS.clip_gradient_norm)
 
   gpu_config = tf.ConfigProto()
