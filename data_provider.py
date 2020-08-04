@@ -187,8 +187,8 @@ def get_data(dataset,
   provider = slim.dataset_data_provider.DatasetDataProvider(
       dataset,
       shuffle=True,
-      num_readers=1,
-      common_queue_capacity=5000*batch_size,
+      num_readers=500,
+      common_queue_capacity=5000*2,
       common_queue_min=batch_size)
   image_orig, label = provider.get(['image', 'label'])
 

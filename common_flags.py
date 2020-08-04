@@ -38,7 +38,7 @@ logging.basicConfig(
 def define():
   """Define common flags."""
   # yapf: disable
-  flags.DEFINE_integer('batch_size', 1,
+  flags.DEFINE_integer('batch_size', 3,
                        'Batch size.')
 
   flags.DEFINE_integer('crop_width', None,
@@ -67,7 +67,7 @@ def define():
                       'BNS name of the TensorFlow master to use.')
 
   # Model hyper parameters
-  flags.DEFINE_float('learning_rate', 0.004,
+  flags.DEFINE_float('learning_rate', 0.0004,
                      'learning rate')
 
   flags.DEFINE_string('optimizer', 'momentum',

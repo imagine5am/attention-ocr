@@ -52,6 +52,6 @@ for i in range(len(model)):
 		iter_seqmax = model[i]
 	if charmax == float(char[i]):
 		iter_chrmax = model[i]
-	print(model[i], char[i], seq[i])
-print("max value of charAcc is ", charmax, "at", iter_chrmax)
-print("max value of seqnAcc is ", seqmax, "at", iter_seqmax)
+	print(model[i], "{:.2f}".format(float(char[i]) * 100), "{:.2f}".format(float(seq[i]) * 100))
+print("max value of charAcc is ", "{:.2f}".format(float(charmax) * 100) , "at", iter_chrmax)
+print("max value of seqnAcc is ", "{:.2f}".format(float(seqmax) * 100) , "at", iter_seqmax)
